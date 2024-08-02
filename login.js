@@ -11,10 +11,12 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
         if (response.status === 200) {
             alert('Login successful. Redirecting to home page.');
             window.localStorage.setItem('token', response.data.token); // Store the token
-            //window.location.href = 'expense.html'; // Redirect to expense page
+            //const userId=parseInt(response.data.userId,10);
+            window.localStorage.setItem('userid', response.data.userid);
+            window.location.href='home.html';
         }
     } catch (error) {
         console.error('Error during login:', error);
-        alert('Login failed. Please try again.');
+        alert(error.response.data.message);
     }
 });
